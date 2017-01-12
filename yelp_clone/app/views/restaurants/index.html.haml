@@ -8,6 +8,7 @@
     - restaurant.reviews.each do |review|
       %p= review.thoughts
       %p= review.rating
+      = link_to "Delete review", restaurant_review_path(restaurant, review), method: :delete
 
 
 - else

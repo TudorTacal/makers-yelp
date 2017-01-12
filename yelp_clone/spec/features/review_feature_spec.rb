@@ -27,4 +27,16 @@ feature 'reviewing' do
     click_button("Leave Review")
     expect(page).to have_content("Has reviewed this restaurant already")
   end
+
+  scenario "User can delete their review" do
+    sign_up
+    add_restaurant
+    click_link('Review KFC')
+    fill_in("Thoughts", with: "so so")
+    select '3', from: 'Rating'
+    click_button("Leave Review")
+    click_link("Delete review")
+    expect(page).not_to have_content("so so")
+    expect(page).not_to have_content(3)
+  end
 end
